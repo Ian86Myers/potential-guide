@@ -1,0 +1,157 @@
+Right click a new folder in your desktop and open git bash.
+Change Directory into the folder, like so:
+<p><code>$ cd /nameofproject</code></p>
+
+Create an isolated environment with the following command:
+<p><code>$ python -m venv my_env</code></p>
+Run the following command to activate your virtual environment try: 
+<p><code>$ source ./my_env/Scripts/activate</code></p>
+<h6> or for iOS or Linux terminals</h6>
+<p><code>$ source ./my_env/bin/activate </code></p>
+In the terminal, round brackets now encapsulate the venv you set up:
+<p><code>(my_env)</code></p>
+
+
+** It is possible to follow the file path to the /activate file command within the virtualenv folder.
+This *venv*, creates an isolated environment for python packages (including Django) and it is located inside your main nameofproject folder, where the django_site folder will soon be located.**
+<p><code>$ pip list</code></p>  
+pip list will show what requirements are installed into the venv library just created in the project level folder. 
+To deactive the venv
+<p><code>(my_env)</code></p>
+<p><code>$ deactivate</code></p>
+
+
+
+
+
+With your environment **activated**, run the following command in your terminal to install Django (nested in your newly created environment) with pip:
+<p><code>$ pip install "Django==3.2.2"</code></p>
+pip is a recursive acronym 'pip install python' 
+
+Now enter in <p><code>$ pip list</code></p> again to reveal <code>Django==</code> and a couple other modules have been added to the virtual environment.
+
+<p><code>$ django-admin startproject django_site</code></p>
+Change Directory into main django_site.
+
+<p><code>$ cd django_site/</code></p>
+List files in that directory
+<p><code>$ ls</code></p>
+Notice Django made <strong>two</strong> directories with that name.  
+Let's now add a single app that will appear in this same directory, along with the inner <pre><code>django_site</code></pre> folder.
+<p><code>$ django-admin startapp mynewapp</code></p>
+*Not yet, but make sure additional apps don't have duplicate names*
+<p><code><em>$ django-admin startapp AddAnotherApp</em></code></p>
+**Hint: The <code>mynewapp</code> *folder/directory* does not contain a <code>settings.py</code> file. <code>settings.py</code> is found in the inner "app - level" django_site folder with <code>wsgi.py</code> and <code>asgi.py</code>.
+<br>
+<h3>runserver</h3> 
+In the same outer <code>django_site</code> directory, with the <code>manage.py</code>,
+ <code>db.sqlite3</code>, <code>django_site</code>, and <code>mynewapp</code> folders, enter in the terminal
+<p><code>$ python manage.py runserver </code></p>
+This automatically starts a development server in your local browser at:<p>
+<a href="http://127.0.0.1:8000/">127.0.0.1:8000/</a></p>
+If you see an animated green rocketship you have success!
+
+Now type <code>ctrl+c</code> to break out of the development server
+
+<h3>Create Admin Super User</h3>
+*** The only way to change lost password is if you have access to the server. You can use a simple <em>'Test123'</em> password for now and it can be created or changed with: ***
+<p><code>$ python manage.py createsuperuser</code></p>
+---
+
+[gitignore.io](https://git-scm.com/docs/gitignore)
+
+Add a .gitignore file in the outer level <code>django_site</code> directory were <code>manage.py</code> file is in your code editor. Go to <p>[toptal.com/developers/gitignore](https://www.toptal.com/developers/gitignore)</p>
+type 'Django' into the gitignore.io input tab hit the 'Create' button and copy the code into a <code>.gitignore</code> file you create inside the *nameofproject* directory with the <code>my_venv</code> and <code>django_site</code> folders.
+
+Setting up Git for the first time on a new project is fairly simple, you just need to enter these commands into your terminal. Be sure to be sitting in the directory where your project is located!
+<p><code>$ git config --global user.name "Your Name"</code></p>
+<p><code>$ git config --global user.email "you@youraddress.com"</code></p>
+<p><code>$ git config --global push.default matching</code></p>
+<p><code>$ git config --global alias.co checkout</code></p>
+
+<h3>Typical Git Commands</h3>
+
+<p><code>$ git init</code></p>
+<p><code>$ git status</code></p>
+<p><code>$ git add -A</code></p>
+<p><code>$ git commit -m "this is my first commit"</code></p>
+<p><code>$ git commit -m "h1 tags to h3"</code></p>
+---
+
+
+another <p><code>$ ls</code></p> will reveal the inner django_site folder, along with the <code>manage.py</code>,
+<code>db.sqlite3</code>, <code>django_site</code>, and <code>mynewapp</code> folders.
+ 
+ **Opening Visual Studio Code from Git Bash, in the <code>/nameofproject</code> directory**
+ <p><code>$ cd ..</code></p>
+  will bring you back a directory into the <code>/nameofproject</code> directory, so now entering
+ <p><code>$ code .</code></p>
+  will open VSCode with all the correct folders revealed in  the *Explorer* window.
+ 
+ 
+ The <code>settings.py</code> file is found inside of the inner django_site folder. Open the <code>settings.py</code> file and locate:
+ <p><code>INSTALLED_APPS = [<ul>
+         <p> 'django.contrib.sitemaps', </p>
+                  <p>  'django.contrib.sites',</p>
+                  <p> 'django.contrib.admin',</p>
+                   <p>'django.contrib.auth',</p>
+                  <p>  'django.contrib.contenttypes',</p>
+                 <p>   'django.contrib.sessions',</p>
+                  <p>  'django.contrib.messages',</p>
+                   <p> 'django.contrib.staticfiles',</p>
+         <p><strong><em># Add each new app here</em></strong></p>
+                  <p>  'mynewapp',</p>
+ </ul>]
+ </code></p>
+ <p>Now Django knows to include <code>mynewapp</code> when it initializes</p>
+ We need to tell Django where we are storing the static and media files while <code>python manage.py runserver</code> are running in development mode on localhost. 
+ In the same <code>settings.py</code>, bottom of the page on a blank line enter the following code:
+ <pre><code>STATIC_URL = '/static/'</code></pre>
+  <p>    and add these two lines to access media files in development mode:</p>
+ <pre><code>MEDIA_ROOT = BASE_DIR, 'media'</code></pre>
+ <pre><code>MEDIA_URL ='/media/'</code></pre>
+ 
+ 
+ Add the following line of code to the top of <code>urls.py</code> file in the main project directory (found directly under the <code>settings.py</code> file)
+ 
+<p><code>from django.conf.urls.static import static
+from django.conf import settings</code></p>
+ 
+ <p>Under the <code>urlpatterns = [...]</code>, in the same <code>urls.py</code> file, add the following</p>
+ 
+ <pre><code>settings.DEBUG:
+     urlpatterns += static(settings.MEDIA_URL, 
+             document_root=settings.MEDIA_ROOT)</pre></code>
+
+
+   <p tab> A <code>class</code>
+    <a href="https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.Field">Field</a> 
+    creates a table in the model. A table that contains the preset values for multiple fields.
+    <br>
+  
+
+To get models to appear on the Admin page locate the <code>admin.py</code> in the app folder.
+<pre><code>from django.contrib import admin</code>
+<code>from .models import Post, Comment</code></pre>
+
+<pre><code>@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'author', 'publish', 'status')
+    list_filter = ('status', 'created', 'publish', 'author')
+    search_fields = ('title', 'body')
+    prepopulated_fields = {'slug': ('title',)}
+    raw_id_fields = ('author',)
+    date_hierarchy = 'publish'
+    ordering = ('status', 'publish')
+</code></pre>
+<pre><code>
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'post', 'created', 'active')
+    list_filter = ('active', 'created', 'updated')
+    search_fields = ('name', 'email', 'body')
+    </code></pre>
+
+Time to update and reload the model. 
+<p><code>$ python manage.py makemigrations</code></p>
+<p><code>$ python manage.py migrate</code></p>

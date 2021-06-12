@@ -1,0 +1,60 @@
+
+DoesNotExist: Question matching query does not exist.
+
+# returns  a string ['aaazzzzzbbbb']
+
+
+    
+# Python3 program to Convert a
+# list to dictionary
+
+def Convert(lst):
+	res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)}
+	return res_dct
+		
+# Driver code
+
+print(Convert(lst))
+lst = ['a2z4b4']
+
+
+
+    #!/usr/bin/env python
+
+# looping.py
+
+domains = { "de": "Germany", "sk": "Slovakia", "hu": "Hungary",
+    "us": "United States", "no": "Norway" }
+
+for key in domains:
+    print(key)
+
+for val in domains.values():
+    print(val)
+
+for k, v in domains.items():
+    print(": ".join((k, v)))
+
+
+# Python3 program to Convert a
+# list to dictionary
+ 
+def Convert(a):
+    it = iter(a)
+    res_dct = dict(zip(it, it))
+    return res_dct
+         
+# Driver code
+lst = ['a', 1, 'b', 2, 'c', 3]
+print(Convert(lst))
+
+
+squares = {i: i * i for i in range(10)}
+
+squares = {i: i * i for i in range(10)}
+
+
+my_dict = {'name': 'Bronx', 'age': '2', 'occupation': 'Rascal'}
+for key, val in my_dict.iteritems():
+    print"My {} is {}".format(key,val)
+
