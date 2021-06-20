@@ -1,4 +1,5 @@
 {
     "python.pythonPath": "c:\\Users\\ian86\\OneDrive\\Desktop\\AfterOrange\\venv\\Scripts\\python.exe",
+    "git.ignoreLimitWarning": true,
     
 }
