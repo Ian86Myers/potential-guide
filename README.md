@@ -1,5 +1,4 @@
 
 
-Hi, I'm Ian and this is a Django Blog.# potential-guide
-# potential-guide
+Hi, I'm Ian this is my Django Blog
 # potential-guide
