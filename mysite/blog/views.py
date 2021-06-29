@@ -1,15 +1,16 @@
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage,\
                                   PageNotAnInteger
-from django.core.mail import send_mail
+from django.core.mail import send_mail, BadHeaderError
 from django.views.generic import ListView
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.search import TrigramSimilarity
 from .models import Post, Comment
-from .forms import EmailPostForm, CommentForm, SearchForm
+from .forms import EmailPostForm, CommentForm, SearchForm, ContactForm
 from taggit.models import Tag
-
+from django.urls import reverse
+from django.conf import settings
 
 def post_list(request, tag_slug=None):
     object_list = Post.published.all()
@@ -125,3 +126,27 @@ def post_search(request):
                   {'form': form,
                    'query': query,
                    'results': results})
+
+
+def contact(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			subject = "Website Inquiry" 
+			body = {
+			'first_name': form.cleaned_data['first_name'], 
+			'last_name': form.cleaned_data['last_name'], 
+			'email': form.cleaned_data['email_address'], 
+			'message':form.cleaned_data['message'], 
+			}
+			message = "\n".join(body.values())
+
+			try:
+				send_mail(subject, message, 'Ian86Myers@gmail.com', ['Ian86Myers@gmail.com']) 
+			except BadHeaderError:
+				return HttpResponse('Invalid header found.')
+			# return redirect ("blog:blog")            
+			return redirect("blog:post_list")
+      
+	form = ContactForm()
+	return render(request, "blog/post/contact.html", {'form':form})

@@ -1,8 +1,9 @@
-Right click a new folder in your desktop and open git bash.
+Open a new folder in your desktop and rename it DjangoGuide, right click on the folder/directory and open Git Bash. Or open Git Bash and type in the following to make a new directory:
+<p><code>$ mkdir DjangoGuide</code></p>
 Change Directory into the folder, like so:
-<p><code>$ cd /nameofproject</code></p>
+<p><code>$ cd /DjangoGuide</code></p>
 
-Create an isolated environment with the following command:
+Create an isolated environment inside <code>DjangoGuide</code> with the following command:
 <p><code>$ python -m venv my_env</code></p>
 Run the following command to activate your virtual environment try: 
 <p><code>$ source ./my_env/Scripts/activate</code></p>
@@ -13,9 +14,9 @@ In the terminal, round brackets now encapsulate the venv you set up:
 
 
 ** It is possible to follow the file path to the /activate file command within the virtualenv folder.
-This *venv*, creates an isolated environment for python packages (including Django) and it is located inside your main nameofproject folder, where the django_site folder will soon be located.**
+This *venv*, creates an isolated environment for python packages (including Django) and it is located inside your main <code>DjangoGuide</code> folder, where the django_site folder will soon be located.**
 <p><code>$ pip list</code></p>  
-pip list will show what requirements are installed into the venv library just created in the project level folder. 
+pip list will show what requirements are installed into the venv library just created in the project level <code>DjangoGuide</code> folder. 
 To deactive the venv
 <p><code>(my_env)</code></p>
 <p><code>$ deactivate</code></p>
@@ -28,16 +29,16 @@ With your environment **activated**, run the following command in your terminal 
 <p><code>$ pip install "Django==3.2.2"</code></p>
 pip is a recursive acronym 'pip install python' 
 
-Now enter in <p><code>$ pip list</code></p> again to reveal <code>Django==</code> and a couple other modules have been added to the virtual environment.
-
+Now enter in <p><code>$ pip list</code></p> again to reveal <code>Django, asgiref, pip, pytz, setuptools, and sqlparse</code> modules have been added to the virtual environment.
+<p>To start a new project with Django</p>
 <p><code>$ django-admin startproject django_site</code></p>
-Change Directory into main django_site.
+Change directory into main django_site.
 
 <p><code>$ cd django_site/</code></p>
 List files in that directory
 <p><code>$ ls</code></p>
 Notice Django made <strong>two</strong> directories with that name.  
-Let's now add a single app that will appear in this same directory, along with the inner <pre><code>django_site</code></pre> folder.
+Let's now add a single app that will appear in this same directory, along with the inner <code>django_site</code> folder.
 <p><code>$ django-admin startapp mynewapp</code></p>
 *Not yet, but make sure additional apps don't have duplicate names*
 <p><code><em>$ django-admin startapp AddAnotherApp</em></code></p>
@@ -45,7 +46,7 @@ Let's now add a single app that will appear in this same directory, along with t
 <br>
 <h3>runserver</h3> 
 In the same outer <code>django_site</code> directory, with the <code>manage.py</code>,
- <code>db.sqlite3</code>, <code>django_site</code>, and <code>mynewapp</code> folders, enter in the terminal
+ <code>django_site</code>, and <code>mynewapp</code> folders, enter in the terminal
 <p><code>$ python manage.py runserver </code></p>
 This automatically starts a development server in your local browser at:<p>
 <a href="http://127.0.0.1:8000/">127.0.0.1:8000/</a></p>
@@ -55,13 +56,29 @@ Now type <code>ctrl+c</code> to break out of the development server
 
 <h3>Create Admin Super User</h3>
 *** The only way to change lost password is if you have access to the server. You can use a simple <em>'Test123'</em> password for now and it can be created or changed with: ***
+<p>For windows try:
+<code>$ winpty python manage.py createsuperuser</code>
+<h6> or for iOS or Linux terminals</h6>
 <p><code>$ python manage.py createsuperuser</code></p>
----
+<p>You will get a prompt in the terminal, as follows</p>
+<code>You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.</code>
 
-[gitignore.io](https://git-scm.com/docs/gitignore)
+
+<p><code>Username (leave blank to use '...'):  </code></p>
+<p><code>Email address:  </code></p>
+<p><code>Password:  </code></p>
+<p><code>Password (again):   </code></p>
+
+
+<hr>
+This part is optional for now.
+<a href="https://git-scm.com/docs/gitignore">gitignore.io</a></p>
+
+
 
 Add a .gitignore file in the outer level <code>django_site</code> directory were <code>manage.py</code> file is in your code editor. Go to <p>[toptal.com/developers/gitignore](https://www.toptal.com/developers/gitignore)</p>
-type 'Django' into the gitignore.io input tab hit the 'Create' button and copy the code into a <code>.gitignore</code> file you create inside the *nameofproject* directory with the <code>my_venv</code> and <code>django_site</code> folders.
+type 'Django' into the gitignore.io input tab hit the 'Create' button and copy the code into a <code>.gitignore</code> file you create inside the *DjangoGuide* directory with the <code>my_venv</code> and <code>django_site</code> folders.
 
 Setting up Git for the first time on a new project is fairly simple, you just need to enter these commands into your terminal. Be sure to be sitting in the directory where your project is located!
 <p><code>$ git config --global user.name "Your Name"</code></p>
@@ -76,15 +93,15 @@ Setting up Git for the first time on a new project is fairly simple, you just ne
 <p><code>$ git add -A</code></p>
 <p><code>$ git commit -m "this is my first commit"</code></p>
 <p><code>$ git commit -m "h1 tags to h3"</code></p>
----
+<hr>
 
 
-another <p><code>$ ls</code></p> will reveal the inner django_site folder, along with the <code>manage.py</code>,
+another <p><code>$ ls</code></p> will reveal the inner <code>django_site</code> folder, along with the <code>manage.py</code>,
 <code>db.sqlite3</code>, <code>django_site</code>, and <code>mynewapp</code> folders.
  
- **Opening Visual Studio Code from Git Bash, in the <code>/nameofproject</code> directory**
+ **Opening Visual Studio Code from Git Bash, in the <code>/DjangoGuide</code> directory**
  <p><code>$ cd ..</code></p>
-  will bring you back a directory into the <code>/nameofproject</code> directory, so now entering
+  will bring you back a directory into the <code>/DjangoGuide</code> directory, so now entering
  <p><code>$ code .</code></p>
   will open VSCode with all the correct folders revealed in  the *Explorer* window.
  
@@ -114,12 +131,12 @@ another <p><code>$ ls</code></p> will reveal the inner django_site folder, along
  
  Add the following line of code to the top of <code>urls.py</code> file in the main project directory (found directly under the <code>settings.py</code> file)
  
-<p><code>from django.conf.urls.static import static
-from django.conf import settings</code></p>
+<p><code>from django.conf.urls.static import static</p>
+<p>from django.conf import settings</code></p>
  
  <p>Under the <code>urlpatterns = [...]</code>, in the same <code>urls.py</code> file, add the following</p>
  
- <pre><code>settings.DEBUG:
+ <pre><code>if settings.DEBUG:
      urlpatterns += static(settings.MEDIA_URL, 
              document_root=settings.MEDIA_ROOT)</pre></code>
 
@@ -129,10 +146,58 @@ from django.conf import settings</code></p>
     creates a table in the model. A table that contains the preset values for multiple fields.
     <br>
   
+Add the following to <code>models.py</code> in the <code>mynewapp</code> folder:
+<pre><code>
+from django.db import models
+from django.utils import timezone
+from django.urls import reverse
+from django.contrib.auth.models import User
 
-To get models to appear on the Admin page locate the <code>admin.py</code> in the app folder.
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status='published')
+
+
+class Post(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    )
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250,
+                            unique_for_date='publish')
+    author = models.ForeignKey(User,
+                              on_delete=models.CASCADE,
+                              related_name='blog_posts')
+    body = models.TextField()
+    publish = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=10,
+                              choices=STATUS_CHOICES,
+                              default='draft')
+
+    objects = models.Manager() # The default manager.
+    published = PublishedManager() # Our custom manager.
+
+    class Meta:
+        ordering = ('-publish',)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail',
+                       args=[self.publish.year,
+                             self.publish.month,
+                             self.publish.day, self.slug])
+                            </code></pre>
+                            <br>
+
+To get models to appear on the Admin page locate the <code>admin.py</code> in the <code>mynewapp</code> folder.
 <pre><code>from django.contrib import admin</code>
-<code>from .models import Post, Comment</code></pre>
+<code>from .models import Post</code></pre>
 
 <pre><code>@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -144,14 +209,12 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
 </code></pre>
-<pre><code>
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'post', 'created', 'active')
-    list_filter = ('active', 'created', 'updated')
-    search_fields = ('name', 'email', 'body')
-    </code></pre>
+
 
 Time to update and reload the model. 
 <p><code>$ python manage.py makemigrations</code></p>
 <p><code>$ python manage.py migrate</code></p>
+Restart the development server and add a forward slash to the url in the browser 
+followed by 'admin' and sign in with the superuser credentials you created.
+<p><code>$ python manage.py runserver</code></p>
+<a href="http://127.0.0.1:8000/admin">127.0.0.1:8000/admin</a></p>

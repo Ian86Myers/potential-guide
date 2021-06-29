@@ -1,5 +1,8 @@
 {
-    "python.pythonPath": "c:\\Users\\ian86\\OneDrive\\Desktop\\AfterOrange\\venv\\Scripts\\python.exe",
+    "python.pythonPath": "c:\\Users\\ian86\\OneDrive\\Desktop\\AfterOrange\\myblogsitevenv\\Scripts\\python.exe",
     "git.ignoreLimitWarning": true,
+    "terminal.integrated.env.windows": {
+    
+    },
     
 }
